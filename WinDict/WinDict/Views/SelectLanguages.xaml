@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="WinDict.Views.SelectLanguages"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:WinDict.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" x:Name="SelectLanguagesWindow">
+    <Control.DataContext>
+        <viewModels:SelectLanguagesViewModel />
+    </Control.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>       
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+            <Label HorizontalAlignment="Center">Select languages:</Label>
+        </Viewbox>
+        <Viewbox Grid.Row="3" Grid.Column="1">
+            <Label HorizontalAlignment="Center">From:</Label>
+        </Viewbox>
+        <Viewbox Grid.Row="3" Grid.Column="3">
+            <Label HorizontalAlignment="Center">To:</Label>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="1">
+            <ComboBox IsEditable="False"  Name="LangFromComboBox" ItemsSource="{Binding LanguageList, Mode=OneWay}" SelectedItem="{Binding PrimaryLanguage}" SelectedIndex="0"/>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="3">
+            <ComboBox IsEditable="False"  Name="LangToComboBox" ItemsSource="{Binding LanguageList, Mode=OneWay}" SelectedItem="{Binding SecondaryLanguage}" SelectedIndex="1"/>    
+        </Viewbox>
+        <Viewbox Grid.Row="7" Grid.Column="1">
+            <Label HorizontalAlignment="Center">Category:</Label>
+        </Viewbox>
+        <Viewbox Grid.Row="7" Grid.Column="3">
+            <ComboBox IsEditable="False" Name="CategoryComboBox" ItemsSource="{Binding CategoryList, Mode=OneWay}" SelectedItem="{Binding Category}" SelectedIndex="0"/>    
+        </Viewbox>
+        <Button Grid.Row="9" Grid.Column="3" Background="GreenYellow" Name="NextButton" Command="{Binding NextClicked}" CommandParameter="{Binding ElementName=SelectLanguagesWindow}" Focusable="False">
+            <Viewbox>
+                <TextBlock>Next ></TextBlock>
+            </Viewbox>
+        </Button>
+    </Grid>
+</UserControl>

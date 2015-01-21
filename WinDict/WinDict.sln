@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinDict", "WinDict\WinDict.csproj", "{A5F1AACB-F691-47E9-BD6C-203BFC283BA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "..\DBLayer\Interfaces\Interfaces.csproj", "{F1A261D3-4DBC-497E-939E-2FB62981732D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5F1AACB-F691-47E9-BD6C-203BFC283BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5F1AACB-F691-47E9-BD6C-203BFC283BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5F1AACB-F691-47E9-BD6C-203BFC283BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5F1AACB-F691-47E9-BD6C-203BFC283BA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1A261D3-4DBC-497E-939E-2FB62981732D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1A261D3-4DBC-497E-939E-2FB62981732D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1A261D3-4DBC-497E-939E-2FB62981732D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1A261D3-4DBC-497E-939E-2FB62981732D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

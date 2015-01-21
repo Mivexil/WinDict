@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="WinDict.Views.Menu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:WinDict.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="300">
+    <Control.Resources>
+        <Style x:Key="LearnButtonStyle" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding SelectedMenuItem}" Value="{x:Static viewModels:MenuItem.Learn}" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="AliceBlue" />
+                </MultiDataTrigger>
+            </Style.Triggers>
+            <Setter Property="Background" Value="LightGray" />
+        </Style>
+        <Style x:Key="TestButtonStyle" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding SelectedMenuItem}" Value="{x:Static viewModels:MenuItem.Test}" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="AliceBlue" />
+                </MultiDataTrigger>
+            </Style.Triggers>
+            <Setter Property="Background" Value="LightGray" />
+        </Style>
+        <Style x:Key="DefineButtonStyle" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding SelectedMenuItem}" Value="{x:Static viewModels:MenuItem.Define}" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="AliceBlue" />
+                </MultiDataTrigger>
+            </Style.Triggers>
+            <Setter Property="Background" Value="LightGray" />
+        </Style>
+    </Control.Resources>
+    <Control.DataContext>
+        <viewModels:MenuViewModel />
+    </Control.DataContext>
+    <Grid Name="MenuGrid" Margin="10px">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="2*" />
+                              
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="1"  Focusable="False" Style="{DynamicResource ResourceKey=LearnButtonStyle}"
+                Command="{Binding ButtonClicked}" CommandParameter="{x:Static viewModels:MenuItem.Learn}">Learn</Button>
+        <Button Grid.Column="3"  Focusable="False" Style="{DynamicResource ResourceKey=TestButtonStyle}"
+                Command="{Binding ButtonClicked}" CommandParameter="{x:Static viewModels:MenuItem.Test}">Test</Button>
+        <Button Grid.Column="5"  Focusable="False" Style="{DynamicResource ResourceKey=DefineButtonStyle}"
+            Command="{Binding ButtonClicked}" CommandParameter="{x:Static viewModels:MenuItem.Define}">Define</Button>
+        <Button Grid.Column="7"  Focusable="False" Background="LightGray"
+                Command="{Binding ButtonClicked}" CommandParameter="{x:Static viewModels:MenuItem.Logout}">
+            <TextBlock>
+                <Run Text="Logout (" /><Run Text="{Binding CurrentUser, Mode=OneWay}" /><Run Text=")" />
+            </TextBlock>
+        </Button>
+    </Grid>
+</UserControl>
