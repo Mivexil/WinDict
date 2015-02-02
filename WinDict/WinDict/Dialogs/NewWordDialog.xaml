@@ -1,0 +1,59 @@
+﻿<Window x:Class="Stachowski.WinDict.Dialogs.NewWordDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModels="clr-namespace:Stachowski.WinDict.ViewModels"
+        Title="NewWordDialog" Height="500" Width="800" Name="NewWordDialogWindow" ResizeMode="NoResize" WindowStyle="None">
+    <Window.DataContext>
+        <viewModels:NewWordDialogViewModel />
+    </Window.DataContext>
+    <Border BorderBrush="Gray" BorderThickness="2px">
+        <Grid Margin="10px">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40px" />
+                <RowDefinition />
+                <RowDefinition Height="40px" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20px">Add/modify word</Label>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="8*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">Definition</Label>
+                <Label Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">Theme</Label>
+                <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center">Picture</Label>
+                <DataGrid Grid.Column="3" Grid.Row="1" ItemsSource="{Binding Definitions}" Name="DefinitionsGrid" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Language}" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Definition}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBox Grid.Column="3" Grid.Row="3" Name="ThemeTextBox" Text="{Binding Theme}"/>
+                <TextBox Grid.Column="3" Grid.Row="5" Name="PicturePathTextBox" Text="{Binding PicturePath}"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Background="GreenYellow" Command="{Binding OkClicked}" CommandParameter="{Binding ElementName=NewWordDialogWindow}">OK</Button>
+                <Button Grid.Column="3" Background="Crimson" Command="{Binding CancelClicked}" CommandParameter="{Binding ElementName=NewWordDialogWindow}">Cancel</Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

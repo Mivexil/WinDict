@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
-using Stachowski.WinDict.Interfaces;
-using WinDict.Dialogs;
-using WinDict.ViewModels.EventArgs;
-using WinDict.ViewModels.General;
+using Stachowski.WinDict.Dialogs;
+using Stachowski.WinDict.ViewModels.EventArgs;
+using Stachowski.WinDict.ViewModels.General;
 
-namespace WinDict.ViewModels
+namespace Stachowski.WinDict.ViewModels
 {
     public class TextValueDialogViewModel : DependencyObject, INotifyPropertyChanged
     {

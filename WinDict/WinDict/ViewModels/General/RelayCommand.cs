@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace WinDict.ViewModels.General
+namespace Stachowski.WinDict.ViewModels.General
 {
     /// <summary>
     /// A command whose sole purpose is to 

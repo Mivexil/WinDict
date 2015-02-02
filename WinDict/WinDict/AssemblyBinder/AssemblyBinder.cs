@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Stachowski.WinDict.Interfaces;
 
-namespace WinDict.AssemblyBinder
+namespace Stachowski.WinDict.AssemblyBinder
 {
     public static class AssemblyBinder
     {
@@ -23,6 +21,60 @@ namespace WinDict.AssemblyBinder
         public static IUserRepository UserRepository = GetUserRepository();
         public static IWordStatisticsRepository StatisticsRepository = GetWordStatisticsRepository();
         public static ILanguageRepository LanguageRepository = GetLanguageRepository();
+
+        public static void CheckAndSeedDatabase()
+        {
+            if (ConfigurationManager.AppSettings.AllKeys.Contains("SeedDatabase") &&
+                ConfigurationManager.AppSettings["SeedDatabase"] == "True" &&
+                !WordRepository.GetAll().Any() &&
+                !UserRepository.GetAllUsers().Any() &&
+                !StatisticsRepository.GetAllStatistics().Any() &&
+                !LanguageRepository.GetAllLanguages().Any())
+            {
+                LanguageRepository.AddLanguage("English");
+                LanguageRepository.AddLanguage("Polish");
+                UserRepository.AddUser("Andrzej");
+                UserRepository.AddUser("Stefan");
+                UserRepository.AddUser("Bogdan");
+                var eng = LanguageRepository.GetByName("English");
+                var pol = LanguageRepository.GetByName("Polish");
+                WordRepository.CreateWord(new Dictionary<ILanguage, string>
+                {
+                    {eng, "Cow"},
+                    {pol, "Krowa"}
+                }, "Animals", null);
+                WordRepository.CreateWord(new Dictionary<ILanguage, string>
+                {
+                    {eng, "Pig"},
+                    {pol, "Świnia"}
+                }, "Animals", null);
+                WordRepository.CreateWord(new Dictionary<ILanguage, string>
+                {
+                    {eng, "Dog"},
+                    {pol, "Pies"}
+                }, "Animals", null);
+                WordRepository.CreateWord(new Dictionary<ILanguage, string>
+                {
+                    {eng, "Cat"},
+                    {pol, "Kot"}
+                }, "Animals", null);
+                WordRepository.CreateWord(new Dictionary<ILanguage, string>
+                {
+                    {eng, "Carrot"},
+                    {pol, "Marchewka"}
+                }, "Vegetables", null);
+                WordRepository.CreateWord(new Dictionary<ILanguage, string>
+                {
+                    {eng, "Cabbage"},
+                    {pol, "Kapusta"}
+                }, "Vegetables", null);
+                WordRepository.CreateWord(new Dictionary<ILanguage, string>
+                {
+                    {eng, "Tomato"},
+                    {pol, "Pomidor"}
+                }, "Vegetables", null);
+            }
+        }
 
         public static void Refresh()
         {

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using WinDict.Annotations;
-using WinDict.ViewModels.General;
-using WinDict.ViewModels.ObjectsViewModels;
+using Stachowski.WinDict.Properties;
+using Stachowski.WinDict.ViewModels.General;
+using Stachowski.WinDict.ViewModels.ObjectsViewModels;
 
-namespace WinDict.ViewModels
+namespace Stachowski.WinDict.ViewModels
 {
     
     public class MenuViewModel : DependencyObject, INotifyPropertyChanged

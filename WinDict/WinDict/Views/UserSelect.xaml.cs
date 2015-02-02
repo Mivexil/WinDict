@@ -1,24 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Stachowski.WinDict.Interfaces;
-using WinDict.Dialogs;
-using WinDict.ViewModels;
-using WinDict.ViewModels.EventArgs;
-using WinDict.ViewModels.ObjectsViewModels;
+using Stachowski.WinDict.Dialogs;
+using Stachowski.WinDict.ViewModels;
+using Stachowski.WinDict.ViewModels.EventArgs;
+using Stachowski.WinDict.ViewModels.ObjectsViewModels;
 
-namespace WinDict.Views
+namespace Stachowski.WinDict.Views
 {
     /// <summary>
     /// Interaction logic for UserSelect.xaml

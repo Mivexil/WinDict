@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Stachowski.WinDict.Interfaces;
-using WinDict.Annotations;
-using WinDict.ViewModels.General;
+using Stachowski.WinDict.Properties;
 
-namespace WinDict.ViewModels.ObjectsViewModels
+namespace Stachowski.WinDict.ViewModels.ObjectsViewModels
 {
     public class WordViewModel : INotifyPropertyChanged
     {
@@ -55,8 +49,8 @@ namespace WinDict.ViewModels.ObjectsViewModels
             }
         }
 
-        private ObservableDictionary<LanguageViewModel, string> _definitions;
-        public ObservableDictionary<LanguageViewModel, string> Definitions
+        private ObservableDefinitionDictionary _definitions;
+        public ObservableDefinitionDictionary Definitions
         {
             get
             {
@@ -79,5 +73,13 @@ namespace WinDict.ViewModels.ObjectsViewModels
                     to.BackingObject));
             stats.AddTry(success);
         }
+
+        public StatisticsViewModel GetStats(LanguageViewModel from, LanguageViewModel to, UserViewModel user)
+        {
+            return
+                new StatisticsViewModel(_wsRep.GetStatistics(user.BackingObject, BackingObject, from.BackingObject,
+                    to.BackingObject));
+        }
+
     }
 }

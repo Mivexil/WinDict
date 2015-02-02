@@ -1,8 +1,8 @@
-﻿<Window x:Class="WinDict.Dialogs.TextValueDialog"
+﻿<Window x:Class="Stachowski.WinDict.Dialogs.TextValueDialog"
         x:Name="TextValueDialogWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:viewModels="clr-namespace:WinDict.ViewModels"
+        xmlns:viewModels="clr-namespace:Stachowski.WinDict.ViewModels"
         Title="NewUserDialog" Height="150" Width="300" ResizeMode="NoResize" WindowStyle="None"
         WindowStartupLocation="CenterOwner">
     <Window.DataContext>

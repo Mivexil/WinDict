@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Stachowski.WinDict.Views.Learn"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Stachowski.WinDict.ViewModels.Converters"
+             xmlns:viewModels="clr-namespace:Stachowski.WinDict.ViewModels"
+             xmlns:views="clr-namespace:Stachowski.WinDict.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:WordDefinitionConverter x:Key="WordConverter" />
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewModels:LearnTestViewModel />
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <views:FlashCard Grid.Column="0" Flipped="False" Word="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=views:Learn}, Path=DataContext.SelectedWord}" 
+                         PrimaryLanguage="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=views:Learn}, Path=DataContext.PrimaryLanguage}" 
+                         SecondaryLanguage="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=views:Learn}, Path=DataContext.SecondaryLanguage}" Flippable="True"/>
+        <ListView Grid.Column="1" ItemsSource="{Binding WordList}" SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=views:Learn}, Path=DataContext.SelectedWord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="WordListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource ResourceKey=WordConverter}" Mode="OneWay">
+                                <Binding RelativeSource="{RelativeSource AncestorType={x:Type views:Learn}}" Path="DataContext.PrimaryLanguage" />
+                                <Binding />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding WordStatistics.Successes}" />
+            <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding WordStatistics.Tries}" />
+        </Grid>
+    </Grid>
+</UserControl>

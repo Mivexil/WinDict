@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Configuration;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Runtime.CompilerServices;
 
@@ -8,7 +9,7 @@ namespace Stachowski.WinDict.DBLayer.EFModel
 {
     internal class WinDictContext : DbContext
     {
-        public WinDictContext() : base(new LocalDbConnectionFactory("mssqllocaldb").CreateConnection("localdb"), true)
+        public WinDictContext() : base(new LocalDbConnectionFactory(ConfigurationManager.AppSettings["localDbVersion"]).CreateConnection(ConfigurationManager.AppSettings["nameOrConnectionString"]), true)
         {
             
         }

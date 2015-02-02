@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
+using Stachowski.WinDict.Dialogs;
 using Stachowski.WinDict.Interfaces;
-using WinDict.Annotations;
-using WinDict.Dialogs;
-using WinDict.ViewModels.EventArgs;
-using WinDict.ViewModels.General;
-using WinDict.ViewModels.ObjectsCollections;
-using WinDict.ViewModels.ObjectsViewModels;
-using WinDict.Views;
+using Stachowski.WinDict.Properties;
+using Stachowski.WinDict.ViewModels.EventArgs;
+using Stachowski.WinDict.ViewModels.General;
+using Stachowski.WinDict.ViewModels.ObjectsCollections;
+using Stachowski.WinDict.ViewModels.ObjectsViewModels;
+using Stachowski.WinDict.Views;
 
-namespace WinDict.ViewModels
+namespace Stachowski.WinDict.ViewModels
 {
     public class UserSelectViewModel : DependencyObject, INotifyPropertyChanged
     {

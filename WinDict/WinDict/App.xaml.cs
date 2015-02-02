@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
-namespace WinDict
+namespace Stachowski.WinDict
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -15,7 +9,7 @@ namespace WinDict
     {
         public App()
         {
-            
+            AssemblyBinder.AssemblyBinder.CheckAndSeedDatabase();
         }
     }
 }

@@ -1,23 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WinDict.ViewModels.EventArgs;
-using WinDict.ViewModels.ObjectsViewModels;
-using WinDict.Views;
-using Menu = WinDict.Views.Menu;
+using Stachowski.WinDict.ViewModels.EventArgs;
+using Stachowski.WinDict.ViewModels.ObjectsViewModels;
+using Stachowski.WinDict.Views;
+using Menu = Stachowski.WinDict.Views.Menu;
 
-namespace WinDict
+namespace Stachowski.WinDict
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -36,10 +24,14 @@ namespace WinDict
         public RoutedEventHandler OnUserSelected;
         public RoutedEventHandler OnMenuItemChanged;
         public RoutedEventHandler OnLanguageSelectedForLearning;
+        public RoutedEventHandler OnLanguageSelectedForTesting;
 
         private Menu _menu = new Menu { SelectedMenuItem = ViewModels.MenuItem.Learn };
         private UserSelect _userSelect = new UserSelect();
         private SelectLanguages _selectLanguages = new SelectLanguages();
+        private Define _define = new Define();
+        private Learn _learn = new Learn();
+        private Test _test = new Test();
 
         public MainWindow()
         {
@@ -60,7 +52,21 @@ namespace WinDict
                         ControlContainer.Children.Clear();
                         ControlContainer.Children.Add(_selectLanguages);
                         break;
-                    //todo ...
+                    case ViewModels.MenuItem.Test:
+                        _selectLanguages.Confirmed += OnLanguageSelectedForTesting;
+                        ControlContainer.Children.Clear();
+                        ControlContainer.Children.Add(_selectLanguages);
+                        break;
+                    case ViewModels.MenuItem.Define:
+                        ControlContainer.Children.Clear();
+                        ControlContainer.Children.Add(_define);
+                        break;
+                    case ViewModels.MenuItem.Logout:
+                        CurrentUser = null;
+                        MenuContainer.Children.Clear();
+                        ControlContainer.Children.Clear();
+                        ControlContainer.Children.Add(_userSelect);
+                        break;
                 }
             };
             OnLanguageSelectedForLearning = (s, e) =>
@@ -68,14 +74,35 @@ namespace WinDict
                 if (_selectLanguages.PrimaryLanguage == null ||
                     _selectLanguages.SecondaryLanguage == null ||
                     String.IsNullOrWhiteSpace(_selectLanguages.Category) ||
-                    _selectLanguages.PrimaryLanguage == _selectLanguages.SecondaryLanguage)
+                    Equals(_selectLanguages.PrimaryLanguage, _selectLanguages.SecondaryLanguage))
                 {
                     ((CancellableEventArgs) e).Cancel = true;
                     return;
                 }
-                //todo...
+                _learn.PrimaryLanguage = _selectLanguages.PrimaryLanguage;
+                _learn.SecondaryLanguage = _selectLanguages.SecondaryLanguage;
+                _learn.CurrentUser = CurrentUser;
+                _learn.Theme = _selectLanguages.Category;
+                ControlContainer.Children.Clear();
+                ControlContainer.Children.Add(_learn);
             };
-
+            OnLanguageSelectedForTesting = (s, e) =>
+            {
+                if (_selectLanguages.PrimaryLanguage == null ||
+                    _selectLanguages.SecondaryLanguage == null ||
+                    String.IsNullOrWhiteSpace(_selectLanguages.Category) ||
+                    Equals(_selectLanguages.PrimaryLanguage, _selectLanguages.SecondaryLanguage))
+                {
+                    ((CancellableEventArgs)e).Cancel = true;
+                    return;
+                }
+                _test.CurrentUser = CurrentUser;
+                _test.PrimaryLanguage = _selectLanguages.PrimaryLanguage;
+                _test.SecondaryLanguage = _selectLanguages.SecondaryLanguage;
+                _test.Theme = _selectLanguages.Category;
+                ControlContainer.Children.Clear();
+                ControlContainer.Children.Add(_test);
+            };
             InitializeComponent();
             _userSelect.UserSelected += OnUserSelected;
             _menu.SelectedMenuItemChanged += OnMenuItemChanged;

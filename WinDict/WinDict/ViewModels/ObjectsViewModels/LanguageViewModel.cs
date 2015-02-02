@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Stachowski.WinDict.Interfaces;
-using WinDict.Annotations;
+using Stachowski.WinDict.Properties;
 
-namespace WinDict.ViewModels.ObjectsViewModels
+namespace Stachowski.WinDict.ViewModels.ObjectsViewModels
 {
     public class LanguageViewModel : INotifyPropertyChanged
     {
@@ -43,6 +38,16 @@ namespace WinDict.ViewModels.ObjectsViewModels
         public override string ToString()
         {
             return Name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return (obj is LanguageViewModel && ((LanguageViewModel) obj).Name == this.Name);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode();
         }
     }
 }

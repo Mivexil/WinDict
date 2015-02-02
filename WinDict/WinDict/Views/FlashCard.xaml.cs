@@ -1,21 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WinDict.ViewModels;
-using WinDict.ViewModels.ObjectsViewModels;
+using Stachowski.WinDict.ViewModels;
+using Stachowski.WinDict.ViewModels.ObjectsViewModels;
 
-namespace WinDict.Views
+namespace Stachowski.WinDict.Views
 {
     /// <summary>
     /// Interaction logic for FlashCard.xaml
@@ -35,22 +23,51 @@ namespace WinDict.Views
             set { ((FlashCardViewModel)DataContext).Flipped = value; }
         }
 
+        public static readonly DependencyProperty PrimaryLanguageProperty =
+            DependencyProperty.Register("PrimaryLanguage", typeof (LanguageViewModel), typeof (FlashCard),
+                new PropertyMetadata(OnPrimaryLanguageChanged));
+
+        private static void OnPrimaryLanguageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((FlashCardViewModel)(((FlashCard)d).DataContext)).PrimaryLanguage = e.NewValue as LanguageViewModel;
+        }
+
         public LanguageViewModel PrimaryLanguage
         {
-            get { return ((FlashCardViewModel)DataContext).PrimaryLanguage; }
-            set { ((FlashCardViewModel)DataContext).PrimaryLanguage = value; }
+            get { return (LanguageViewModel)GetValue(PrimaryLanguageProperty); }
+            set { SetValue(PrimaryLanguageProperty, value); }
+        }
+
+        public static readonly DependencyProperty SecondaryLanguageProperty =
+            DependencyProperty.Register("SecondaryLanguage", typeof(LanguageViewModel), typeof(FlashCard),
+                new PropertyMetadata(OnSecondaryLanguageChanged));
+
+        private static void OnSecondaryLanguageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((FlashCardViewModel)(((FlashCard)d).DataContext)).SecondaryLanguage = e.NewValue as LanguageViewModel;
         }
 
         public LanguageViewModel SecondaryLanguage
         {
-            get { return ((FlashCardViewModel)DataContext).SecondaryLanguage; }
-            set { ((FlashCardViewModel)DataContext).SecondaryLanguage = value; }
+            get { return (LanguageViewModel)GetValue(SecondaryLanguageProperty); }
+            set { SetValue(SecondaryLanguageProperty, value); }
+        }
+
+        public static readonly DependencyProperty WordProperty =
+            DependencyProperty.Register("Word", typeof (WordViewModel), typeof (FlashCard),
+                new PropertyMetadata(OnWordChanged));
+
+        private static void OnWordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((FlashCardViewModel) (((FlashCard) d).DataContext)).Word = e.NewValue as WordViewModel;
+            ((FlashCardViewModel)(((FlashCard)d).DataContext)).Flipped = false;
+            ((FlashCardViewModel)(((FlashCard)d).DataContext)).WordPicture = null;        
         }
 
         public WordViewModel Word
         {
-            get { return ((FlashCardViewModel)DataContext).Word; }
-            set { ((FlashCardViewModel)DataContext).Word = value; }
+            get { return (WordViewModel)GetValue(WordProperty); }
+            set { SetValue(WordProperty, value); }
         }
 
         public FlashCard()

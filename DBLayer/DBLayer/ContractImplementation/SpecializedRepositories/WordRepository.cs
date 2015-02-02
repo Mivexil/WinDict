@@ -20,7 +20,13 @@ namespace Stachowski.WinDict.DBLayer.ContractImplementation.SpecializedRepositor
             {
                 using (var ms = new MemoryStream(entity.Image))
                 {
-                    pic = new Bitmap(ms);
+                    var original = ((Bitmap) Image.FromStream(ms));
+                    var copy = new Bitmap(original.Width, original.Height);
+                    using (Graphics g = Graphics.FromImage(copy))
+                    {
+                        g.DrawImage(original, 0, 0, original.Width, original.Height);
+                    }
+                    pic = copy;                    
                 }
             }
             catch (ArgumentException)

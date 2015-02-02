@@ -131,7 +131,20 @@ namespace Stachowski.WinDict.DBLayer.ContractImplementation.SpecializedRepositor
                                                                        x.Word.ID == wordConcrete.EntityID &&
                                                                        x.FromLanguage.ID == fromConcrete.EntityID &&
                                                                        x.ToLanguage.ID == toConcrete.EntityID);
-            if (stats == null) return null;
+            if (stats == null)
+            {
+                stats =
+                    _ctx.Statistics.Add(new WordStatisticsPerUser
+                    {
+                        User = _userRep.FindEntity(userConcrete),
+                        Word = _wordRep.FindEntity(wordConcrete),
+                        FromLanguage = _langRep.FindEntity(fromConcrete),
+                        ToLanguage = _langRep.FindEntity(toConcrete),
+                        Successes = 0,
+                        Tries = 0
+                    });
+                _ctx.SaveChanges();
+            };
             return FromEntity(stats);
         }
     }

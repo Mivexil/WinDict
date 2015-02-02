@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Stachowski.WinDict.Interfaces;
-using WinDict.Annotations;
+using Stachowski.WinDict.Properties;
 
-namespace WinDict.ViewModels.ObjectsViewModels
+namespace Stachowski.WinDict.ViewModels.ObjectsViewModels
 {
     public class UserViewModel : INotifyPropertyChanged
     {

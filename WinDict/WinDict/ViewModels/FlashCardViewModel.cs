@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows;
 using System.Windows.Input;
-using WinDict.ViewModels.General;
-using WinDict.ViewModels.ObjectsViewModels;
+using Stachowski.WinDict.ViewModels.General;
+using Stachowski.WinDict.ViewModels.ObjectsViewModels;
 
-namespace WinDict.ViewModels
+namespace Stachowski.WinDict.ViewModels
 {
     public class FlashCardViewModel : DependencyObject
     {
@@ -31,12 +27,26 @@ namespace WinDict.ViewModels
         }
 
         public static readonly DependencyProperty WordProperty = DependencyProperty.Register("Word",
-            typeof (WordViewModel), typeof (FlashCardViewModel));
+            typeof (WordViewModel), typeof (FlashCardViewModel), new FrameworkPropertyMetadata(OnWordChanged) {BindsTwoWayByDefault = true});
+
+        private static void OnWordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((FlashCardViewModel)d).Flipped = false;
+        }
 
         public WordViewModel Word
         {
             get { return (WordViewModel) GetValue(WordProperty); }
             set { SetValue(WordProperty, value); }
+        }
+
+        public static readonly DependencyProperty WordPictureProperty =
+            DependencyProperty.Register("WordPicture", typeof (Bitmap), typeof (FlashCardViewModel));
+
+        public Bitmap WordPicture
+        {
+            get { return (Bitmap) GetValue(WordPictureProperty); }
+            set { SetValue(WordPictureProperty, value); }
         }
 
         public static readonly DependencyProperty PrimaryLanguageProperty =
@@ -75,6 +85,7 @@ namespace WinDict.ViewModels
         public void Flip()
         {
             Flipped = !Flipped;
+            WordPicture = Flipped ? Word.Picture : null;
         }
     }
 }

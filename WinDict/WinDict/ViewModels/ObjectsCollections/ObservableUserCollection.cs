@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Stachowski.WinDict.Interfaces;
-using WinDict.ViewModels.ObjectsViewModels;
+using Stachowski.WinDict.ViewModels.ObjectsViewModels;
 
-namespace WinDict.ViewModels.ObjectsCollections
+namespace Stachowski.WinDict.ViewModels.ObjectsCollections
 {
     public class ObservableUserCollection : ObservableCollection<UserViewModel>
     {

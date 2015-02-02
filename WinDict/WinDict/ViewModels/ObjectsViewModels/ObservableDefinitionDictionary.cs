@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Stachowski.WinDict.Interfaces;
-using WinDict.ViewModels.General;
+using Stachowski.WinDict.ViewModels.General;
 
-namespace WinDict.ViewModels.ObjectsViewModels
+namespace Stachowski.WinDict.ViewModels.ObjectsViewModels
 {
     public class ObservableDefinitionDictionary : ObservableDictionary<LanguageViewModel, string>
     {

@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using WinDict.ViewModels.EventArgs;
-using WinDict.ViewModels.General;
-using WinDict.ViewModels.ObjectsViewModels;
-using WinDict.Views;
+using Stachowski.WinDict.ViewModels.EventArgs;
+using Stachowski.WinDict.ViewModels.General;
+using Stachowski.WinDict.ViewModels.ObjectsViewModels;
+using Stachowski.WinDict.Views;
 
-namespace WinDict.ViewModels
+namespace Stachowski.WinDict.ViewModels
 {
     public class SelectLanguagesViewModel : DependencyObject
     {

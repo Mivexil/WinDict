@@ -37,7 +37,7 @@ using System.Runtime.Serialization;
 
 #pragma warning disable
 
-namespace WinDict.ViewModels.General
+namespace Stachowski.WinDict.ViewModels.General
 {
     [Serializable]
     public class ObservableDictionary<TKey, TValue> :
